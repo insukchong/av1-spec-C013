@@ -62,7 +62,11 @@ integer values) to the defined levels:
 | 21                     | 7.1
 | 22                     | 7.2
 | 23                     | 7.3
-| 24-30                  | Reserved
+| 24                     | 8.0
+| 25                     | 8.1
+| 26                     | 8.2
+| 27                     | 8.3
+| 28-30                  | Reserved
 | 31                     | Maximum parameters
 {:.table .table-sm .table-bordered }
 
@@ -90,6 +94,14 @@ The level defines variables as specified in the following tables:
 | 6.1    | 35651584   | 16384     | 8704      | 2,139,095,040  | 2,189,721,600
 | 6.2    | 35651584   | 16384     | 8704      | 4,278,190,080  | 4,379,443,200
 | 6.3    | 35651584   | 16384     | 8704      | 4,278,190,080  | 4,706,009,088
+| 7.0    | 142606336  | 32768     | 17408     | 4,278,190,080  | 4,706,009,088
+| 7.1    | 142606336  | 32768     | 17408     | 8,556,380,160  | 8,758,886,400
+| 7.2    | 142606336  | 32768     | 17408     | 17,112,760,320 | 17,517,772,800
+| 7.3    | 142606336  | 32768     | 17408     | 17,112,760,320 | 18,824,036,352
+| 8.0    | 530841600  | 65536     | 34816     | 17,112,760,320 | 18,824,036,352
+| 8.1    | 530841600  | 65536     | 34816     | 34,225,520,640 | 34,910,031,052
+| 8.2    | 530841600  | 65536     | 34816     | 68,451,041,280 | 69,820,062,105
+| 8.3    | 530841600  | 65536     | 34816     | 68,451,041,280 | 75,296,145,408
 {:.table .table-sm .table-bordered }
 
 **Note:** The missing entries in these tables (for example level 2.2 and 7.0) represent
@@ -113,6 +125,14 @@ levels that are not yet defined.
 | 6.1    | 300           | 100.0       | 480.0       | 8      | 4      | 128      | 16          | 7680x4320@60fps
 | 6.2    | 300           | 160.0       | 800.0       | 8      | 4      | 128      | 16          | 7680x4320@120fps
 | 6.3    | 300           | 160.0       | 800.0       | 8      | 4      | 128      | 16          | 7680x4320@120fps
+| 7.0    | 300           | 160.0       | 800.0       | 8      | 4      | 256      | 32          | 15360×8640@30fps
+| 7.1    | 300           | 200.0       | 960.0       | 8      | 4      | 256      | 32          | 15360×8640@60fps
+| 7.2    | 300           | 320.0       | 1600.0      | 8      | 4      | 256      | 32          | 15360×8640@120fps
+| 7.3    | 300           | 320.0       | 1600.0      | 8      | 4      | 256      | 32          | 15360×8640@120fps
+| 8.0    | 300           | 320.0       | 1600.0      | 8      | 4      | 512      | 64          | 30720×17280@30fps
+| 8.1    | 300           | 400.0       | 1920.0      | 8      | 4      | 512      | 64          | 30720×17280@60fps
+| 8.2    | 300           | 640.0       | 3200.0      | 8      | 4      | 512      | 64          | 30720×17280@120fps
+| 8.3    | 300           | 640.0       | 3200.0      | 8      | 4      | 512      | 64          | 30720×17280@120fps
 {:.table .table-sm .table-bordered }
 
 **Note:** Examples are given for non-scalable cases, but the constraints also
@@ -256,7 +276,9 @@ it is a requirement of bitstream conformance that the following constraints hold
   * For each tile, if use_superres is equal to 1 and RightMostTile is equal to
     0, then TileWidth is greater than or equal to 128
 
-  * TileWidth * TileHeight is less than or equal to 4096 * 2304 for each tile
+  * For level less than 7.0, TileWidth * TileHeight is less than or equal to 4096 * 2304 for each tile
+
+  * For level higher than or euqal to 7.0, TileWidth * TileHeight is less than or equal to 4096 * 4608 for each tile
 
   * FrameWidth is greater than or equal to 16
 
